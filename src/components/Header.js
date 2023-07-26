@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 function Header() {
   return (
-    <header>
-        <h1 class="text-4xl"> 
-            Simple ToDo App!
-        </h1>
-        <br/>
+    <header className="text-center mt-8">
+      <h1 className="text-4xl font-bold text-blue-600">
+        Simple ToDo App!
+      </h1>
+      <br />
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

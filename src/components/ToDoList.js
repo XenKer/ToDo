@@ -5,15 +5,15 @@ const ToDoList = ({ toDoList, handleLineThrough, handleClear, handleDelete }) =>
     <div>
       {toDoList.map(todo => {
         return (
-          <div key={todo.id} className={`flex items-center mb-2`}>
+          <div key={todo.id} className="flex items-center mb-2">
             <div
-              className={`font-medium cursor-pointer ${todo.complete ? "line-through" : ""}`}
+              className={`flex-1 ${todo.complete ? "line-through" : ""}`}
               onClick={() => handleLineThrough(todo.id)}
             >
               {todo.task}
             </div>
             <button
-              className="ml-2 px-2 py-1 bg-red-500 hover:bg-red-600 text-white font-medium rounded-md shadow-md focus:outline-none focus:ring focus:ring-red-300"
+              className="px-2 py-1 bg-red-500 hover:bg-red-600 text-white font-medium rounded-md shadow-md focus:outline-none focus:ring focus:ring-red-300"
               onClick={() => handleDelete(todo.id)}
             >
               Delete
