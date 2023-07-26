@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import data from './data.json';
 import ToDoList from './components/ToDoList';
+import TaskAdder from './components/TaskAdder';
 
 function App() {
   const [toDoList, setToDoList] = useState(data);
@@ -25,6 +26,12 @@ function App() {
     setToDoList(filteredList);
   };
 
+  const addTask = (taskInput) => {
+    let alreadyTasks = [...toDoList];
+    alreadyTasks.push({id: toDoList.length + 1, task: taskInput, complete: false})
+    setToDoList(alreadyTasks);
+  }
+
   return (
     <div>
       <Header />
@@ -34,6 +41,10 @@ function App() {
         handleClear={handleClear}
         handleDelete={handleDelete}
       />
+      <TaskAdder 
+        addTask = {addTask}
+      />
+
     </div>
   );
 }
