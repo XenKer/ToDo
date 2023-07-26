@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import TaskAdder from './components/TaskAdder';
 import ToDoList from './components/ToDoList';
-import TaskAdder from './components/TaskAdder';
 
 function App() {
   const initialData = {
@@ -53,21 +52,27 @@ function App() {
     return days[targetDate.getDay()] + " - " + targetDate.toLocaleDateString();
   };
 
-  const addTask = (taskInput) => {
-    let alreadyTasks = [...toDoList];
-    alreadyTasks = [...alreadyTasks, {id: toDoList.length+1, task: taskInput, complete:false}]
-    setToDoList(alreadyTasks);
-  }
-
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
-      <ToDoList
-        toDoList={toDoList}
-        handleLineThrough={handleLineThrough}
-        handleClear={handleClear}
-        handleDelete={handleDelete}
-      />
+      <div className="max-w-6xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {Object.keys(weeklyTasks).map((day, index) => (
+          <div key={day}>
+            <h2 className="text-2xl font-bold mt-4 mb-2">
+              {getDayWithOffset(index)}
+            </h2>
+            <ToDoList
+              toDoList={weeklyTasks[day]}
+              handleLineThrough={(id) => handleLineThrough(day, id)}
+              handleClear={() => handleClear(day)}
+              handleDelete={(id) => handleDelete(day, id)}
+            />
+            <TaskAdder
+              addTask={(taskInput) => addTask(day, taskInput)}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
